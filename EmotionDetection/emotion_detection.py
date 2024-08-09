@@ -38,7 +38,7 @@ def emotion_detector(text_to_analyse):
                 dominant_emotion = emotion
                 prev_emotion = curr_emotion
     
-    elif response.status.code == 400:
+    elif response.status_code == 400:
         anger_score = None
         disgust_score = None
         fear_score = None
