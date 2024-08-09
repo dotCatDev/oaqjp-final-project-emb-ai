@@ -5,10 +5,8 @@ app = Flask("Emotion Detector")
 
 @app.route("/emotionDetector")
 def sent_detector():
-    # Retrieve the text to analyze from the request arguments
     text_to_analyze = request.args.get('textToAnalyze')
 
-    # Pass the text to the emotion_detector function and store the response
     response = emotion_detector(text_to_analyze)
 
     dominant_emotion = response['dominant_emotion']
@@ -18,9 +16,6 @@ def sent_detector():
     else:
         return response
    
-
-   
-
 @app.route("/")
 def render_index_page():
     return render_template('index.html')
