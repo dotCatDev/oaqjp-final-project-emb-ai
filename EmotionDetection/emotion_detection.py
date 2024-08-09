@@ -13,27 +13,39 @@ def emotion_detector(text_to_analyse):
     # Parsing the JSON response from the API
     formatted_response = json.loads(response.text)
 
-    emotions = formatted_response['emotionPredictions'];
 
+    if response.status_code == 200:
+        emotions = formatted_response['emotionPredictions'];
 
-    anger_score = emotions[0]['emotion']['anger']
-    disgust_score = emotions[0]['emotion']['disgust']
-    fear_score = emotions[0]['emotion']['fear']
-    joy_score = emotions[0]['emotion']['joy']
-    sadness_score = emotions[0]['emotion']['sadness']
-
-    prev_emotion = 0
-    max_emotion = 0
-    dominant_emotion = {}
-    for emotion in emotions[0]['emotion']:
-        curr_emotion = emotions[0]['emotion'][emotion]
-
-        if(curr_emotion > prev_emotion):
-            dominant_emotion = emotion
-            prev_emotion = curr_emotion
-            
-
+        anger_score = emotions[0]['emotion']['anger']
         
+        disgust_score = emotions[0]['emotion']['disgust']
+        
+        fear_score = emotions[0]['emotion']['fear']
+        
+        joy_score = emotions[0]['emotion']['joy']
+        sadness_score = emotions[0]['emotion']['sadness']
+
+        prev_emotion = 0
+        
+        max_emotion = 0
+        
+        dominant_emotion = {}
+        for emotion in emotions[0]['emotion']:
+            curr_emotion = emotions[0]['emotion'][emotion]
+
+            if(curr_emotion > prev_emotion):
+                dominant_emotion = emotion
+                prev_emotion = curr_emotion
+    
+    elif response.status == 400:
+        anger_score = None
+        disgust_score = None
+        fear_score = None
+        joy_score = None
+        sadness_score = None
+        dominant_emotion = None
+
 
     output = {
     'anger': anger_score,
