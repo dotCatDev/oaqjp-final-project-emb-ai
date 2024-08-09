@@ -11,21 +11,12 @@ def sent_detector():
     # Pass the text to the emotion_detector function and store the response
     response = emotion_detector(text_to_analyze)
 
-    # Extract the label and score from the response
     dominant_emotion = response['dominant_emotion']
 
-    label = response['label']
-    score = response['score']
-
-    # Check if the label is None, indicating an error or invalid input
     if dominant_emotion is None:
-        return "Invalid input! Try again."
+        return "Invalid text! Please try again!."
     else:
-        # Return a formatted string with the sentiment label and score
-        return "The given text has been identified as {} with a score of {}.".format(label.split('_')[1], score)
-
-
-    return response
+        return response
    
 
    
