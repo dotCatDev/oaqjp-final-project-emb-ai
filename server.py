@@ -1,5 +1,5 @@
 """
-DocString text test
+Server.py listen to requests from the site
 """
 from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
@@ -9,7 +9,7 @@ app = Flask("Emotion Detector")
 @app.route("/emotionDetector")
 def sent_detector():
     """
-    DocString text test
+    Sends the text to be analyzed by the api
     """
     text_to_analyze = request.args.get('textToAnalyze')
 
@@ -24,6 +24,9 @@ def sent_detector():
 
 @app.route("/")
 def render_index_page():
+    """
+    Let's return the index page
+    """
     return render_template('index.html')
 
 if __name__ == "__main__":
