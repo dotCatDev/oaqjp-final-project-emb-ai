@@ -1,3 +1,4 @@
+# This is the server.py file 
 from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
 
@@ -13,9 +14,9 @@ def sent_detector():
 
     if dominant_emotion is None:
         return "Invalid text! Please try again!."
-    else:
-        return response
-   
+
+    return response
+
 @app.route("/")
 def render_index_page():
     return render_template('index.html')
